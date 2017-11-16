@@ -135,7 +135,7 @@ $(document).ready(function () {
 <pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
 <pre><code>## filter(): dplyr, stats
 ## lag():    dplyr, stats</code></pre>
-<pre class="r"><code>activity_data &lt;- as.tibble(read_csv(&quot;./Activity Data Files/activity.csv&quot;, col_names = T))</code></pre>
+<pre class="r"><code>activity_data &lt;- as.tibble(read_csv(&quot;./activity/activity.csv&quot;, col_names = T))</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   steps = col_integer(),
@@ -171,7 +171,6 @@ box()</code></pre>
 max_interval &lt;- daily_pattern %&gt;% filter(ave_steps == max(ave_steps))
 message(&quot;The interval with the maximum average steps is &quot;, max_interval$interval)</code></pre>
 <pre><code>## The interval with the maximum average steps is 835</code></pre>
-<p>The interval with the maximum average number of steps was 835, 206.1698113.</p>
 </div>
 <div id="imputing-missing-values" class="section level2">
 <h2>Imputing missing values</h2>
@@ -187,7 +186,7 @@ message(&quot;The interval with the maximum average steps is &quot;, max_interva
 ##New Daily Steps
 steps_daily_new &lt;- new_activity_data %&gt;% group_by(date) %&gt;% summarise(steps = sum(steps))
 ##New Mean
-mean2 &lt;- mean(steps_daily_new$steps)
+mean2 &lt;- round(mean(steps_daily_new$steps))
 ##New Median
 median2 &lt;- median(steps_daily_new$steps)</code></pre>
 <p>Comparing the two means 1.076610^{4} vs <code>rmean2</code> and the two medians 10765 vs 1.039510^{4} one notices that the mean and median have fallen somewhat. A quick check on comparing the substitions of the NA values gives us a clue why.</p>

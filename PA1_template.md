@@ -33,7 +33,7 @@ library(tidyverse)
 ```
 
 ```r
-activity_data <- as.tibble(read_csv("./Activity Data Files/activity.csv", col_names = T))
+activity_data <- as.tibble(read_csv("./activity/activity.csv", col_names = T))
 ```
 
 ```
@@ -93,8 +93,6 @@ message("The interval with the maximum average steps is ", max_interval$interval
 ## The interval with the maximum average steps is 835
 ```
 
-The interval with the maximum average number of steps was 835, 206.1698113.
-
 ## Imputing missing values
 
 The following code was run to ascertain where the missing NAs were located.
@@ -132,7 +130,7 @@ new_activity_data <- activity_data %>% transform(steps = ifelse(is.na(steps), me
 ##New Daily Steps
 steps_daily_new <- new_activity_data %>% group_by(date) %>% summarise(steps = sum(steps))
 ##New Mean
-mean2 <- mean(steps_daily_new$steps)
+mean2 <- round(mean(steps_daily_new$steps))
 ##New Median
 median2 <- median(steps_daily_new$steps)
 ```
